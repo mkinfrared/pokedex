@@ -1,6 +1,5 @@
 .pokedex {
 	margin-bottom: 50px;
-	//padding: 0 50px;
 	h1 {
 		font-size: 30px;
 		font-weight: bold;
@@ -13,14 +12,17 @@
 		grid-template-areas: "header header header header header header" "picture stats stats stats stats stats";
 		align-items: center;
 		grid-gap: 20px;
+		@media (max-width: 992px) {
+			grid-template-areas: "header header header header header header" "picture picture picture picture picture picture" "stats stats stats stats stats stats";
+		}
 		h2 {
 			grid-area: header;
 		}
 		.pokemon-pic {
 			grid-area: picture;
-			border: 1px solid #000000;
 			height: 151px;
 			img {
+				border: 1px solid #000000;
 				height: 100%;
 				display: block;
 				margin: 0 auto;
@@ -31,19 +33,45 @@
 			border-collapse: collapse;
 			width: 100%;
 			table {
-				width: 90%;
+				width: 100%;
 				text-align: center;
 				margin: 0 auto;
-				height: 100%;
+				@media (max-width: 768px) {
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+					grid-template-areas: "thead tbody";
+				}
 				thead {
+					tr {
+						@media (max-width: 768px) {
+							display: flex;
+							flex-direction: column;
+							grid-area: thead;
+						}
+					}
 					td {
 						font-weight: 500;
 						border: 2px solid #000000;
 					}
 				}
+				tbody {
+					tr {
+						@media (max-width: 768px) {
+							display: flex;
+							flex-direction: column;
+							grid-area: tbody;
+						}
+					}
+				}
 				td {
+					height: 50px;
 					border: 1px solid #000000;
-					padding: 28px;
+					vertical-align: middle;
+					@media (max-width: 768px) {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+					}
 				}
 			}
 		}
