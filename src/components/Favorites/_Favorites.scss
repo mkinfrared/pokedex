@@ -1,0 +1,21 @@
+.favorites {
+	h2 {
+		margin-bottom: 50px;
+	}
+	.pokemons {
+		display: grid;
+		grid-template-columns: repeat(8, 1fr);
+		grid-gap: 20px;
+		div {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			text-align: center;
+			border: 1px solid #000000;
+			height: 150px;
+			img, p {
+				margin: 0 auto;
+			}
+		}
+	}
+}
