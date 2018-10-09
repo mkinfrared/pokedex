@@ -3,7 +3,8 @@ require('dotenv').config();
 const http       = require('http'),
 	  express    = require('express'),
 	  bodyParser = require('body-parser'),
-	  session    = require('express-session');
+	  session    = require('express-session'),
+	  path       = require('path');
 
 const checkForSession = require('./middlewares/checkForSession'),
 	  ac              = require('./controllers/user_controller');
@@ -20,6 +21,12 @@ app.use(session({
 	saveUninitialized: true
 }));
 app.use(checkForSession);
+
+app.use(express.static(`${__dirname}/../build`));
+
+app.get('*', (req, res, next) => {
+	res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 app.post('/api/login', ac.login);
 app.post('/api/register', ac.register);
