@@ -24,9 +24,6 @@ app.use(checkForSession);
 
 app.use(express.static(`${__dirname}/../build`));
 
-app.get('*', (req, res, next) => {
-	res.sendFile(path.join(__dirname, '../build/index.html'));
-});
 
 app.post('/api/login', ac.login);
 app.post('/api/register', ac.register);
@@ -34,5 +31,9 @@ app.post('/api/signout', ac.signout);
 app.get('/api/user', ac.getUser);
 app.put('/api/add-favorite', ac.addFavorite);
 app.put('/api/remove-favorite', ac.removeFavorites);
+
+app.get('*', (req, res, next) => {
+	res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 server.listen(SERVER_PORT, () => console.log(`Server is working on port ${SERVER_PORT}`));
